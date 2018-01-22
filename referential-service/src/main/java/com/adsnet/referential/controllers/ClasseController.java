@@ -48,11 +48,11 @@ public class ClasseController {
 	
 	@RequestMapping(value="class/all", method=RequestMethod.GET)
 	public @ResponseBody List<Classe> getAllClasses(){
-				
+		
 		return classService.findAll();
 	}
 	
-	@RequestMapping(value="class", method=RequestMethod.GET)
+	@RequestMapping(value="/class", method=RequestMethod.GET)
 	public @ResponseBody Page<Classe> viewAllClasses(@RequestParam String label, @RequestParam String pathId, @RequestParam int page){
 		
 		Classe classExample=new Classe();
@@ -61,7 +61,6 @@ public class ClasseController {
 		pathId=(pathId==""?null:pathId);
 		path.setId(pathId);
 		classExample.setPath(path);
-		System.out.println("classe à rechercher "+classExample.toString());
 		
 		return classService.findAllByExample(classExample,new PageRequest(page, Integer.parseInt(environment.getProperty("pages.number"))));		
 	}

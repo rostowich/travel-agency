@@ -44,13 +44,13 @@ public class CityController {
 	    binder.setValidator(new CityRequestValidator());
 	}
 	
-	@RequestMapping(value="city/all", method=RequestMethod.GET)
+	@RequestMapping(value="/city/all", method=RequestMethod.GET)
 	public @ResponseBody List<City> getAllCities(){
 		
 		return cityService.findAll();
 	}
 	
-	@RequestMapping(value="city", method=RequestMethod.GET)
+	@RequestMapping(value="/city", method=RequestMethod.GET)
 	public @ResponseBody Page<City> viewAllCities(@RequestParam Long id, @RequestParam String label, @RequestParam int page){
 		
 		City cityExample=new City();
@@ -76,7 +76,7 @@ public class CityController {
 		return new ResponseEntity<City>(HttpStatus.NO_CONTENT);
 	}
 	
-	@RequestMapping(value="city/", method=RequestMethod.PUT)
+	@RequestMapping(value="city", method=RequestMethod.PUT)
 	public ResponseEntity<City>  updateCity(@Valid @RequestBody City city) throws ItemAlreadyExistException{
 		//We will make sure that the city exists before updating it
 		Optional<City> citySearch=cityService.findCityById(city.getId());
