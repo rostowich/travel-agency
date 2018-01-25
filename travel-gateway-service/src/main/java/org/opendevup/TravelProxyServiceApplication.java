@@ -12,8 +12,6 @@ public class TravelProxyServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TravelProxyServiceApplication.class, args);
-	}
-	
-	
+	}	
 }
 

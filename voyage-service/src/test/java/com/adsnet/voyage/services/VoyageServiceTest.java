@@ -1,8 +1,6 @@
 package com.adsnet.voyage.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.refEq;
 import static org.mockito.Mockito.doNothing;
@@ -21,9 +19,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.parsing.PassThroughSourceExtractor;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -169,6 +165,4 @@ public class VoyageServiceTest {
 		assertThat(voyageList.get(2).getPathId()).isEqualTo("1_3");
 		
 	}
-	
-
 }
