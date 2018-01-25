@@ -152,7 +152,7 @@ public class Voyage {
 	}
 
 	public Voyage(Date departureDate, int numberOfPlace, int numberOfSalePlace, Boolean archived,
-			Long departureHourId, Long busId, String path) {
+			Long departureHourId, Long busId, String pathId) {
 		super();
 		this.departureDate = departureDate;
 		this.numberOfPlace = numberOfPlace;
@@ -160,7 +160,7 @@ public class Voyage {
 		this.archived = archived;
 		this.departureHourId = departureHourId;
 		this.busId = busId;
-		this.pathId = path;
+		this.pathId = pathId;
 	}
 
 	public Voyage() {
