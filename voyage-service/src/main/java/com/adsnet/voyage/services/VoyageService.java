@@ -8,9 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.adsnet.voyage.entities.Voyage;
 import com.adsnet.voyage.exceptions.ItemAlreadyExistException;
+import com.adsnet.voyage.objects.Bus;
+import com.adsnet.voyage.objects.DepartureHour;
+import com.adsnet.voyage.objects.Path;
 import com.adsnet.voyage.repositories.IVoyageRepository;
 import com.adsnet.voyage.repositories.VoyageSpecification;
 
@@ -20,6 +24,12 @@ public class VoyageService implements IVoyageService{
 	
 	@Autowired
 	private IVoyageRepository voyageRepository;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@Autowired
+	private IUrlService urlService;
 
 	@Override
 	public Voyage save(Voyage voyage) throws ItemAlreadyExistException {
@@ -41,7 +51,32 @@ public class VoyageService implements IVoyageService{
 	@Override
 	public Optional<Voyage> findVoyageById(String id) {
 		// TODO Auto-generated method stub
-		return voyageRepository.findById(id);
+		Optional<Voyage> voyageSearched= voyageRepository.findById(id);
+		
+		//get the Bus, DepartureHour and Path from the referential-service
+		/*DepartureHour departureHour=null;
+		Path path=null;
+		Bus bus=null;
+		if(voyageSearched.isPresent()){
+			if(voyageSearched.get().getDepartureHourId()!=null){
+				//Get the departureHour
+				departureHour=restTemplate.getForObject(urlService.getDepartureHourServiceUrl(Long.toString(voyageSearched.get().getDepartureHourId())),
+								DepartureHour.class);
+			}
+			if(voyageSearched.get().getPathId()!=null){
+				//Get the Path 
+				path=restTemplate.getForObject(urlService.getPathServiceUrl(voyageSearched.get().getPathId()), Path.class);
+			}
+			if(voyageSearched.get().getBusId()!=null){
+				bus=restTemplate.getForObject(urlService.getBusServiceUrl(Long.toString(voyageSearched.get().getBusId())), Bus.class);
+			}
+		}
+		
+		voyageSearched.get().setDepartureHour(departureHour);
+		voyageSearched.get().setBus(bus);
+		voyageSearched.get().setPath(path);*/
+		
+		return voyageSearched;		
 	}
 
 	@Override

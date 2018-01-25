@@ -6,6 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.adsnet.voyage.objects.Bus;
+import com.adsnet.voyage.objects.DepartureHour;
+import com.adsnet.voyage.objects.Path;
 
 @Entity
 @Table(name="tab_voyage")
@@ -35,6 +40,15 @@ public class Voyage {
 	
 	@Column(name = "PATH_ID")
 	private String pathId;
+	
+	@Transient
+	private DepartureHour departureHour;
+	
+	@Transient
+	private Bus bus;
+	
+	@Transient
+	private Path path;
 
 	public String getId() {
 		return id;
@@ -97,6 +111,36 @@ public class Voyage {
 	}
 
 	public void setPath(String pathId) {
+		this.pathId = pathId;
+	}
+	
+	
+
+	public DepartureHour getDepartureHour() {
+		return departureHour;
+	}
+
+	public void setDepartureHour(DepartureHour departureHour) {
+		this.departureHour = departureHour;
+	}
+
+	public Bus getBus() {
+		return bus;
+	}
+
+	public void setBus(Bus bus) {
+		this.bus = bus;
+	}
+
+	public Path getPath() {
+		return path;
+	}
+
+	public void setPath(Path path) {
+		this.path = path;
+	}
+
+	public void setPathId(String pathId) {
 		this.pathId = pathId;
 	}
 
